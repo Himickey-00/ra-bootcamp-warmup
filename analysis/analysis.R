@@ -69,4 +69,12 @@ for (variable in variables) {
 #(b)回帰分析
 model <- lm(gradrate4yr ~ after, data = master)
 result <- summary(model)
-print(result)
+
+result_table <- data.frame(
+  Estimate = coef(result)[, "Estimate"],
+  Std_Error = coef(result)[, "Std. Error"],
+  t_value = coef(result)[, "t value"],
+  Pr = coef(result)[, "Pr(>|t|)"]
+)
+
+print(result_table)
